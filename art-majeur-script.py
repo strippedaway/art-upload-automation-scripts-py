@@ -21,18 +21,8 @@ def get_driver(profile_path, headless=False):
     profile = FirefoxProfile(profile_path)
     options.profile = profile  # ← this is the correct way now
 
-    service = Service(executable_path="/usr/bin/geckodriver")
+    service = Service(executable_path="/usr/bin/geckodriver") #directory of geckodriver on linux
     return webdriver.Firefox(service=service, options=options)
-
-
-def tester():
-    PROFILE_PATH = load_firefox_profile()
-    driver = get_driver(PROFILE_PATH, headless=False)
-    driver.get("https://www.artmajeur.com")
-    print(driver.title)
-    input("Press Enter to quit...")
-    driver.quit()
-
 
 def load_firefox_profile(path="ff-profile.json"):
     base = os.path.dirname(os.path.abspath(__file__))
@@ -45,6 +35,14 @@ def load_firefox_profile(path="ff-profile.json"):
 
     return ffprofile
 
+def tester():
+    PROFILE_PATH = load_firefox_profile()
+    driver = get_driver(PROFILE_PATH, headless=False)
+    driver.get("https://www.artmajeur.com")
+    print(driver.title)
+    input("Press Enter to quit...")
+    driver.quit()
+
 
 def load_secrets(platform_name, path="secrets.json"):
     base = os.path.dirname(os.path.abspath(__file__))
@@ -52,10 +50,22 @@ def load_secrets(platform_name, path="secrets.json"):
         all_secrets = json.load(f)
 
     for entry in all_secrets:
-        if entry.get("platform", "").lower() == platform_name.lower():
+        if entry.get("platform", "Art-Majeur").lower() == platform_name.lower():
             return entry
 
     raise ValueError(f"No credentials found for platform: {platform_name}")
+
+
+def load_catalog(path="art-majeur-catalog.json"):
+    base = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(base, path), "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def get_artwork_by_id(artworks, target_id):
+    for art in artworks:
+        if art.get("id") == target_id:
+            return art
+    raise ValueError(f"No artwork found with id {target_id}")
 
 
 def logIN(driver, email, password, timeout=15):
@@ -102,27 +112,57 @@ def go_to_upload_form(driver, timeout=15):
         EC.presence_of_element_located((By.ID, "title"))  # or any upload form field
     )
     print("✅ Arrived at artwork upload form.")
+
+
+def setUp(platform="Art-Majeur", headless=False):
+    PROFILE_PATH = load_firefox_profile()
+    driver = get_driver(profile_path=PROFILE_PATH, headless=headless)
+
+    secrets = load_secrets(platform)
+    EMAIL = secrets["email"]
+    PASSWORD = secrets["password"]
+
+    if not is_logged_in(driver):
+        logIN(driver, EMAIL, PASSWORD)
+
+    return driver
     
 
+
+def uploadMain(driver, art):
+    return True
+
+def imageUpload(driver, art):
+    return True
+
+def autoComplete(driver, art):
+    return True
+
+
+def upload_artwork(driver, artwork_id):
+    artworks = load_catalog()
+    art = get_artwork_by_id(artworks, artwork_id)
+
+    uploadMain(driver, art)
+    imageUpload(driver, art)
+    autoComplete(driver, art)
 
 
 
 def main():
-    PROFILE_PATH = load_firefox_profile()
-    driver = get_driver(profile_path=PROFILE_PATH, headless=False)
-
-
-    secrets = load_secrets("Art-Majeur")
-    EMAIL = secrets["email"]
-    PASSWORD = secrets["password"]
-
-    logIN(driver, EMAIL, PASSWORD)
-
+    driver = setUp()
     go_to_upload_form(driver)
 
-    
+    try:
+        artwork_id = int(input("Enter the ID of the artwork to upload: "))
+        upload_artwork(driver, artwork_id)
+        print(f"✅ Successfully uploaded artwork ID {artwork_id}")
+    except ValueError:
+        print("❌ Invalid input. Please enter a numeric ID.")
+    except Exception as e:
+        print(f"❌ Upload failed: {e}")
 
-    input("Press Enter to quit...")
+
     driver.quit()
 
 if __name__ == "__main__":
