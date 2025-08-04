@@ -1,0 +1,33 @@
+{
+    "enumeration" ,
+    "internal-sku": ,
+    "title": ,
+    "year": ,
+    "primary_type": ,
+    "description": ,
+    "materials": [
+
+    ],
+    "type": ,
+    "dimensions": {
+        "height": ,
+        "width": ,
+        "depth": ,
+        "unit": "cm"
+    },
+    "weight": {
+        "value": ,
+        "unit": "kg"
+    },
+    "keywords": [
+
+    ],
+    "price": {
+        "value": ,
+        "unit": 
+    },
+    "image_directory": ,
+    "primary_image": ,
+    "secondary_image": 
+}
+

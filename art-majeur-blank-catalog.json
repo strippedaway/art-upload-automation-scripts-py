@@ -1,0 +1,47 @@
+{
+    "enumeration": ,
+    "title": ,
+    "series": "Latest Works",
+    "year": ,
+    "family_filter": "yes",
+    "primary_type": "Sculpture",
+    "paint_draw_techniques": [,],
+    "sculpture_techniques": [
+        "Bronze",
+        "Casting",
+    ],
+    "main_technique": "Casting",
+    "support": "Stone",
+    "signature": "Signed by the artist on the back",
+    "art_type": "One of a kind",
+    "display_out": "no",
+    "display_wall": "no",
+    "frame": "no",
+    "dimensions": {
+        "height": ,
+        "width": ,
+        "depth": ,
+        "unit": "cm"
+    },
+    "weight": {
+        "value": ,
+        "unit": "kg"
+    },
+    "sale_status": "For Sale",
+    "price": {
+        "value": ,
+        "unit": "EUR"
+    },
+    "packaging": ,
+    "ship_profile": "Default shipping profile",
+    "digital_print": "Digital licensing",
+    "condition": "Perfect",
+    "description": ,
+    "keywords": [],
+    "internal-sku": ,
+    "image_directory": "artwork/<inster-art-work-image-folder",
+    "images": {
+        "primary_image": "main.jpg",
+        "secondary_images": "side.jpg"
+    }
+}

@@ -1,0 +1,17 @@
+#configs and passwords
+secrets.json
+ff-profile.json
+
+#artwork config .gitignore
+catalog.json
+swap.json
+art-majeur-catalog.json
+
+
+#artwork folders
+artwork*
+
+
+
+#misc files
+misc_text*
