@@ -120,6 +120,8 @@ def main():
 
     go_to_upload_form(driver)
 
+    
+
     input("Press Enter to quit...")
     driver.quit()
 

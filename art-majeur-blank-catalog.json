@@ -1,22 +1,19 @@
 {
     "enumeration": ,
     "title": ,
-    "series": "Latest Works",
+    "series": ,
     "year": ,
-    "family_filter": "yes",
-    "primary_type": "Sculpture",
-    "paint_draw_techniques": [,],
-    "sculpture_techniques": [
-        "Bronze",
-        "Casting",
-    ],
-    "main_technique": "Casting",
-    "support": "Stone",
-    "signature": "Signed by the artist on the back",
-    "art_type": "One of a kind",
-    "display_out": "no",
-    "display_wall": "no",
-    "frame": "no",
+    "family_filter": ,
+    "primary_type": ,
+    "paint_draw_techniques": [],
+    "sculpture_techniques": [],
+    "main_technique": ,
+    "support": ,
+    "signature": ,
+    "art_type": ,
+    "display_out": ,
+    "display_wall": ,
+    "frame": ,
     "dimensions": {
         "height": ,
         "width": ,
@@ -27,21 +24,30 @@
         "value": ,
         "unit": "kg"
     },
-    "sale_status": "For Sale",
+    "sale_status": ,
     "price": {
         "value": ,
-        "unit": "EUR"
+        "unit": ""
     },
     "packaging": ,
-    "ship_profile": "Default shipping profile",
-    "digital_print": "Digital licensing",
-    "condition": "Perfect",
+    "ship_profile": ,
+    "digital_print": ,
+    "condition": ,
     "description": ,
     "keywords": [],
     "internal-sku": ,
     "image_directory": "artwork/<inster-art-work-image-folder",
     "images": {
         "primary_image": "main.jpg",
-        "secondary_images": "side.jpg"
+        "caption2": "Details",
+        "image2": "details.jpg",
+        "caption3": "Side of the work",
+        "image3": "side1.jpg",
+        "caption4": "Side of the work",
+        "image4": "left.jpg",
+        "caption5": "Side of the work",
+        "image5": "right.jpg",
+        "caption6": "Back of the work",
+        "image6": "back.jpg"
     }
 }
