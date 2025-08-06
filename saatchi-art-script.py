@@ -13,8 +13,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
-#from selenium.webdriver.common.action_chains import ActionChains
-#from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 def get_driver(profile_path, headless=False):
@@ -29,6 +29,7 @@ def get_driver(profile_path, headless=False):
     service = Service(executable_path="/usr/bin/geckodriver") #directory of geckodriver on linux
     return webdriver.Firefox(service=service, options=options)
 
+
 def load_firefox_profile(path="ff-profile.json"):
     base = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(base, path), "r", encoding="utf-8") as f:
@@ -40,10 +41,11 @@ def load_firefox_profile(path="ff-profile.json"):
 
     return ffprofile
 
+
 def tester():
     PROFILE_PATH = load_firefox_profile()
     driver = get_driver(PROFILE_PATH, headless=False)
-    driver.get("https://www.artmajeur.com")
+    driver.get("https://www.saatchiart.com/")
     print(driver.title)
     input("Press Enter to quit...")
     driver.quit()
@@ -55,16 +57,17 @@ def load_secrets(platform_name, path="secrets.json"):
         all_secrets = json.load(f)
 
     for entry in all_secrets:
-        if entry.get("platform", "Art-Majeur").lower() == platform_name.lower():
+        if entry.get("platform", "Saatchi-Art").lower() == platform_name.lower():
             return entry
 
     raise ValueError(f"No credentials found for platform: {platform_name}")
 
 
-def load_catalog(path="art-majeur-catalog.json"):
+def load_catalog(path="saatchi-art-catalog.json"):
     base = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(base, path), "r", encoding="utf-8") as f:
         return json.load(f)
+
 
 def get_artwork_by_id(artworks, target_id):
     for art in artworks:
@@ -122,6 +125,7 @@ def go_to_upload_form(driver, timeout=15):
         print("[go_to_upload_form] Upload form is ready.")
     except Exception as e:
         print(f"[go_to_upload_form] Failed to load upload form: {e}")
+
 
 def is_logged_in(driver):
     try: 
@@ -269,6 +273,7 @@ def imageUpload(driver, art):
         except Exception as e:
             print(f"[imageUpload] Failed to upload {image_key}: {e}")
     time.sleep(0.5)
+
 
 def autoComplete(driver, art):
     #navigate to detail editing page
@@ -785,7 +790,6 @@ def upload_artwork(driver, artwork_id):
     uploadMain(driver, art)
     imageUpload(driver, art)
     autoComplete(driver, art)
-
 
 
 def main():
