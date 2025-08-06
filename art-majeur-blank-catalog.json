@@ -38,7 +38,7 @@
     "theme":,
     "keywords": [],
     "internal-sku": ,
-    "image_directory": "artwork/<inster-art-work-image-folder",
+    "image_directory": "artwork/<inster-art-work-image-folder>",
     "images": {
         "primary_image": "main.jpg",
         "caption2": "Details",

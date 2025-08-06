@@ -41,6 +41,9 @@
             "unit": "lb",
         },
         "shipping_addr": ,
-        "price":       
+        "price": {
+            "value": ,
+            "unit": "USD"
+        }
     }
 ]
