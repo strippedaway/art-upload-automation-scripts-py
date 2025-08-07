@@ -5,6 +5,7 @@ ff-profile.json
 #artwork config .gitignore
 catalog.json
 swap.json
+swap.py
 art-majeur-catalog.json
 saatchi-art-catalog.json
 
