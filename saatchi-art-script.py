@@ -128,6 +128,7 @@ def go_to_upload_form(driver, timeout=15):
 
 
 def is_logged_in(driver):
+    
     try: 
         driver.find_element(By.CSS_SELECTOR, "span[class*='Account_accountIconInitials']")
         return True
@@ -149,11 +150,20 @@ def setUp(platform="Saatchi-Art", headless=False):
     return driver
     
 
+#starting from upload folder:
+
+def titlePic(driver, art):
+        
+        return True
+
+
 
 
 def upload_artwork(driver, artwork_id):
     artworks = load_catalog()
     art = get_artwork_by_id(artworks, artwork_id)
+
+    titlePic(driver,art)
 
     return True
 

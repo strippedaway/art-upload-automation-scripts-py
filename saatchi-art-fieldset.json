@@ -1,0 +1,75 @@
+{
+    "upload_form": "https://www.saatchiart.com/studio/upload",
+    "log_test": "a[href='/auth/logout']",
+    "input_test": "",
+    "fieldset": [
+        {
+        "title": {
+            "type": "text",
+            "field": "input[id='artwork_rawTitle']"
+        },
+            "image_directory": "artwork-image/01-inscape/",
+            "images": {
+                "primary_image": "main.jpg",
+                "caption2": "Detailed view.",
+                "image2": "details.jpg",
+                "caption3": "Left side of the work",
+                "image3": "left.jpg",
+                "caption4": "Right side of the work",
+                "image4": "right.jpg",
+                "caption5": "Back of the work",
+                "image5": "back.jpg"
+            },
+            "primary_type": "Sculpture",
+            "subject": "Floral",
+            "year": 2024,
+            "main_technique": "Casting",
+            "materials": [
+                "Bronze",
+                "Metal",
+                "Enamel"
+            ],
+            "styles": [
+                "Surrealism",
+                "Abstract Expressionism",
+                "Symbolism"
+            ],
+            "dimensions": {
+                "height": 12.5,
+                "width": 10.6,
+                "depth": 24.8,
+                "unit": "in"
+            },
+            "keywords": [
+                "person",
+                "spiritual developments",
+                "rebellious",
+                "work representing",
+                "spiritual",
+                "emotional turmoil",
+                "emotional",
+                "periods strong",
+                "periods",
+                "rebellious ambiguous",
+                "unpredicatble",
+                "happen periods"
+            ],
+            "description": "A surrealistic work, representing a rebellious and ambiguous inner world of a person, her emotions, unpredicatble spiritual developments which are not typical to this person, which often happen to one in periods of strong emotional turmoil.",
+            "sale_status": "For Sale",
+            "art_type": "One-of-a-kind",
+            "mult_piece": "No",
+            "mount": "Free-Standing",
+            "display_out": "No",
+            "packaging": "Box",
+            "ship_weight": {
+                "value": 4.41,
+                "unit": "lb"
+            },
+            "shipping_addr": "Karen Terzyan",
+            "price": {
+                "value": 3200,
+                "unit": "USD"
+            }
+        }
+    ]
+}

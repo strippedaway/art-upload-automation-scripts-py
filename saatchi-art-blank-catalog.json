@@ -1,49 +1,52 @@
-[
-    {
-        "id": ,
-        "title": ,
-        "image_directory": "artwork/<inster-art-work-image-folder",
-        "images": {
-            "primary_image": "main.jpg",
-            "caption2": "Details",
-            "image2": "details.jpg",
-            "caption3": "Side of the work",
-            "image3": "side1.jpg",
-            "caption4": "Side of the work",
-            "image4": "left.jpg",
-            "caption5": "Side of the work",
-            "image5": "right.jpg",
-            "caption6": "Back of the work",
-            "image6": "back.jpg"
-        },
-        "primary_type": ,
-        "subject": ,
-        "year": ,
-        "main_technique": ,
-        "materials": [],
-        "styles": [],
-        "dimensions": {
-            "height": ,
-            "width": ,
-            "depth": ,
-            "unit": "in"
-        },
-        "keywords": [],
-        "description": ,
-        "sale_status": ,
-        "art_type": ,
-        "mult_piece": ,
-        "mount": ,
-        "display_out": ,
-        "packaging": ,
-        "ship_weight": {
-            "value": ,
-            "unit": "lb",
-        },
-        "shipping_addr": ,
-        "price": {
-            "value": ,
-            "unit": "USD"
+{
+    "upload_form": "https://www.saatchiart.com/studio/upload",
+    "artwork": [
+        {
+            "id": ,
+            "title": ,
+            "image_directory": "artwork/<inster-art-work-image-folder",
+            "images": {
+                "primary_image": "main.jpg",
+                "caption2": "Details",
+                "image2": "details.jpg",
+                "caption3": "Side of the work",
+                "image3": "side1.jpg",
+                "caption4": "Side of the work",
+                "image4": "left.jpg",
+                "caption5": "Side of the work",
+                "image5": "right.jpg",
+                "caption6": "Back of the work",
+                "image6": "back.jpg"
+            },
+            "primary_type": ,
+            "subject": ,
+            "year": ,
+            "main_technique": ,
+            "materials": [],
+            "styles": [],
+            "dimensions": {
+                "height": ,
+                "width": ,
+                "depth": ,
+                "unit": "in"
+            },
+            "keywords": [],
+            "description": ,
+            "sale_status": ,
+            "art_type": ,
+            "mult_piece": ,
+            "mount": ,
+            "display_out": ,
+            "packaging": ,
+            "ship_weight": {
+                "value": ,
+                "unit": "lb",
+            },
+            "shipping_addr": ,
+            "price": {
+                "value": ,
+                "unit": "USD"
+            }
         }
-    }
-]
+    ]
+}

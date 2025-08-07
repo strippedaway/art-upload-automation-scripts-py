@@ -1,0 +1,82 @@
+{
+    "upload_form": "https://www.artmajeur.com/en/account/karen-terzyan/artworks/new/image/file",
+    "log_test": "a[href='/en/logout']",
+    "input_test": "input[name='imageFile']",
+    "fieldset": {
+        "title": {
+            "type": "text",
+            "selector": "input[id='artwork_rawTitle']"
+        },
+        "series": "Latest Works",
+        "year": 2025,
+        "family_filter": "yes",
+        "primary_type": "Sculpture",
+        "paint_draw_techniques": [
+            "Enamel"
+        ],
+        "sculpture_techniques": [
+            "Bronze",
+            "Casting",
+            "Metals",
+            "Stone"
+        ],
+        "main_technique": "Casting",
+        "support": "Stone",
+        "signature": "Signed by artist on the back",
+        "art_type": "One of a kind",
+        "display_out": "no",
+        "display_wall": "no",
+        "frame": "no",
+        "dimensions": {
+            "height": 32,
+            "width": 27,
+            "depth": 63,
+            "unit": "cm"
+        },
+        "weight": {
+            "value": 2.96,
+            "unit": "kg"
+        },
+        "sale_status": "For Sale",
+        "price": {
+            "value": 3375,
+            "unit": "EUR"
+        },
+        "packaging": "Wood Crate",
+        "ship_profile": "Default shipping profile",
+        "digital_print": "Digital licensing",
+        "condition": "Perfect",
+        "description": "The Star of David as an allegory of an all-seeing eye, symbolizing the enduring wisdom of the Jewish mother, revealed through her unique life philosophy.",
+        "style": "Surrealism",
+        "theme": "Religion",
+        "keywords": [
+            "star",
+            "life philosophy",
+            "david allegory",
+            "eye symbolizing",
+            "seeing",
+            "wisdom",
+            "wisdom jewish",
+            "star david",
+            "mother",
+            "mother revealed",
+            "revealed",
+            "seeing eye"
+        ],
+        "internal-sku": "13-jewish-mother",
+        "image_directory": "artwork-image/13-jewish-mother/",
+        "images": {
+            "primary_image": "main.jpg",
+            "caption2": "Details",
+            "image2": "details.jpg",
+            "caption3": "Side of the work",
+            "image3": "side1.jpg",
+            "caption4": "Side of the work",
+            "image4": "left.jpg",
+            "caption5": "Side of the work",
+            "image5": "right.jpg",
+            "caption6": "Back of the work",
+            "image6": "back.jpg"
+        }
+    }
+}
