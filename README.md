@@ -1,51 +1,70 @@
-
 # Form Upload Automator in Python
 
-This is a collection of scripts to use selenium in python to automate form filling with data upload. 
+This is a collection of scripts to use selenium in python to automate form filling with data upload.
 
-This uses vanilla firefox/geckodriver as the main agent of browsing using a default ff profile to browse. 
+This uses vanilla firefox/geckodriver as the main agent of browsing using a default firefox profile to browse and ideally avoid being bot-detected.
 
+## To Do List:
 
-In order to use the scripts, you will need to create a 
+- Debug Current functionality
+- write scripts for catalog generation
+- Add more fieldtypes
+- Create form-scanner to arrange grab selectors for various input field options based on url. 
+- Possible AI-agent addition implementation to be able to automate any sort of framework of data. 
+- Rewrite profile to work with cookie and session exraction. 
 
-`secrets.json` and `ff-profile.json` files.
+## Usage:
+
+In order to use the scripts, you will need to create `secrets.json` and `ff-profile.json` files inside `/data/` folder. 
 
 `secrets.json` is populated as such:
 
 ```json
 [
+
     {
-        "platform": "Platform1",
-        "email": "email-address",
-        "password": "password"
+        "platform": "platform-name",
+        "address": "https://www.plat-form.com/en/login",
+        "email": {
+            "value": "email",
+            "field": "email-input-selector-value"
+        },
+        "password": {
+            "value": "password",
+            "field": "password-input-selector-value"
+        },
+        "button": "log-in-button-selector"
     },
-    {
-        "platform": "Platform2",
-        "email": "email-address",
-        "password": "password2"
-    }
+
+},
+
+{
+        "next": "entry", 
+        ...
+}
 ]
 ```
-```json
 
-`ff-profile.json` is filled out by adding a ff profile 
+For now you have to grab those elements manually. However, in the future the plan is to restructure and automate field selector extraction. You generally find the selectors like you would if you were to write a function in selenium. But here all you need to do for now is do the extraction on your own. 
+
+
+
+`ff-profile.json` is filled out by adding a firefox profile directory to it. This imports your sessions and so on. This should be revised. but as this function runs locally for now it is fine. In the future 
+
+```json
 ```{
-    "ffprofile": "/home/user/.firefox/<profile-folder-directory>"
+
+"ffprofile": "/home/user/.mozilla/firefox/<profile-folder-directory>"
+
 }
 ```
 
-It requires the creation of an artwork-image folder and placing each set of artwork photos in a directory, you then have to reference such directory in the catalog files with specific references to each image within it. Blank-catalog files are given in the repo, they are based on the upload process so that you can fill in the fields accordingly. You must create an array out of the one copy for each site, the general structure of the json array is as:
+In addition to that. you need to create appropriate appropriate catalogs and fieldset files and place them in the folders `/data/catalogs` and `/data/fieldsets`
 
-```json
-[
-    {
-        //entry1,
-    },
-    {
-        //entry2
-    }
-]
-```
+it is important that `platform-name` is consistent across the names of `*.json` files. So that you it is referencable by the prompt in the script. 
 
-and within each set of `{}` you have a blank version of all the fields for the platform. the blank single filled json files will be provided. you just have to create a version without the `-blank-` in its name in the root folder of the repo. 
+These two files are planned to become generatable in the future. For the original purposes I have manually gathered these catalogs and fieldsets myself. On the other hand, I do intended to work on a field-gathering and a catalog generating script, so that you could feed the script some pages. Prepare some data and have one script prepare the catalogs and another script to prepare the fieldsets. 
+
+
+
 
