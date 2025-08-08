@@ -1,9 +1,9 @@
 
-# Art Upload Automator in Python
+# Form Upload Automator in Python
 
-This is a collection of scripts to automate a process of uploading artwork in bulk to art platforms. 
+This is a collection of scripts to use selenium in python to automate form filling with data upload. 
 
-Using Python and Selenium in order to automate the process of adding artwork into these websites when you have a large amount of works to work with. This uses vanilla firefox/geckodriver as the main agent of browsing using a default ff profile to browse. 
+This uses vanilla firefox/geckodriver as the main agent of browsing using a default ff profile to browse. 
 
 
 In order to use the scripts, you will need to create a 
@@ -25,6 +25,7 @@ In order to use the scripts, you will need to create a
         "password": "password2"
     }
 ]
+```
 ```json
 
 `ff-profile.json` is filled out by adding a ff profile 
