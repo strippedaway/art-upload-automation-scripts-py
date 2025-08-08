@@ -78,11 +78,11 @@ def load_fieldset(platform_name):
         return json.load(f)
 
 
-def get_artwork_by_id(catalog, target_id):
-    for art in catalog.get("artwork", []):
-        if art.get("id") == target_id:
-            return art
-    raise ValueError(f"No artwork found with id {target_id}")
+def get_content_by_id(catalog, target_id):
+    for cnt in catalog.get("content", []):
+        if cnt.get("id") == target_id:
+            return cnt
+    raise ValueError(f"No content found with id {target_id}")
 
 
 def logIN(driver, secrets, fieldset, timeout=15):
@@ -166,7 +166,7 @@ def setUp(platform_name, catalog, headless=False):
     return driver
 
 
-def prepElem(driver, fieldset, artwork, fieldName, timeout=10):
+def prepElem(driver, fieldset, content, fieldName, timeout=10):
     field_conf = fieldset.get(fieldName)
     if not field_conf:
                 raise ValueError(f"[prepElem] No field mapping found for '{fieldName}'")
@@ -176,7 +176,7 @@ def prepElem(driver, fieldset, artwork, fieldName, timeout=10):
     if not selector:
         raise ValueError(f"[prepElem] No selector defined in fieldset for '{fieldName}'")
 
-    value = artwork.get(fieldName) if artwork and fieldName in artwork else None
+    value = content.get(fieldName) if content and fieldName in content else None
 
     try:
         WebDriverWait(driver, timeout).until(
@@ -195,9 +195,9 @@ def prepElem(driver, fieldset, artwork, fieldName, timeout=10):
         raise
 
 
-def textFill(driver, artwork, fieldset, fieldName):
+def textFill(driver, content, fieldset, fieldName):
     try:
-        element, value = prepElem(driver, fieldset, artwork, fieldName)
+        element, value = prepElem(driver, fieldset, content, fieldName)
         element.clear()
         time.sleep(0.5)
         element.send_keys(value)
@@ -206,27 +206,27 @@ def textFill(driver, artwork, fieldset, fieldName):
         print(f"[textFill] ❌ Error filling text field: {e}")
 
 
-def dropChoose(driver, fieldset, artwork, fieldName):
+def dropChoose(driver, fieldset, content, fieldName):
     try:
-        element, value = prepElem(driver, fieldset, artwork, fieldName)
+        element, value = prepElem(driver, fieldset, content, fieldName)
         Select(element).select_by_visible_text(value)
 
     except Exception as e:
         print(f"[dropChoose] ❌ Error choosing field: {e}")
 
 
-def clickRadio(driver, artwork, fieldset, fieldName):
+def clickRadio(driver, content, fieldset, fieldName):
     try:
-        element, _value = prepElem(driver, fieldset, artwork, fieldName)
+        element, _value = prepElem(driver, fieldset, content, fieldName)
         element.click()
 
     except Exception as e:
         print(f"[clickRadio] ❌ Error choosing field: {e}")
 
 
-def clickMulti(driver, artwork, fieldset, fieldName):
+def clickMulti(driver, content, fieldset, fieldName):
     try:
-        container, values = prepElem(driver, fieldset, artwork, fieldName)
+        container, values = prepElem(driver, fieldset, content, fieldName)
     except Exception as e:
         print(f"[clickMulti] Could not prepare element for '{fieldName}': {e}")
         return
@@ -251,9 +251,9 @@ def clickMulti(driver, artwork, fieldset, fieldName):
             print(f"[clickMulti] ⚠ No label matched '{value}' in '{fieldName}'")
 
 
-def multiWordFill(driver, artwork, fieldset, fieldName):
+def multiWordFill(driver, content, fieldset, fieldName):
     try:
-        element, values = prepElem(driver, fieldset, artwork, fieldName)
+        element, values = prepElem(driver, fieldset, content, fieldName)
     except Exception as e:
         print(f"[multiWordFill] ❌ Failed prep for '{fieldName}': {e}")
         return
@@ -288,9 +288,9 @@ def multiWordFill(driver, artwork, fieldset, fieldName):
             print(f"[multiWordFill] ⚠ Failed to enter '{word}' into '{fieldName}': {e}")
 
 
-def clickButton(driver, artwork, fieldset, fieldName):
+def clickButton(driver, content, fieldset, fieldName):
     try:
-        button, _value, = prepElem(driver, fieldset, artwork, fieldName)
+        button, _value, = prepElem(driver, fieldset, content, fieldName)
 
     except Exception as e:
         print(f"[clickButton] ❌ Failed to locate '{fieldName}': {e}")
@@ -305,28 +305,28 @@ def clickButton(driver, artwork, fieldset, fieldName):
         print(f"[clickButton] ❌ Error clicking '{fieldName}': {e}")
 
 
-def prepImages(artwork, fieldset):
-    base_path = artwork.get("image_directory", "")
-    img_data = artwork.get("images", {})
+def prepImages(content, fieldset):
+    base_path = content.get("image_directory", "")
+    file_data = content.get("images", {})
     results = []
 
     # MAIN
-    if "primary_image" in img_data and "primary_image" in fieldset:
+    if "primary_image" in file_data and "primary_image" in fieldset:
         results.append({
             "is_main": True,
-            "path": os.path.join(base_path, img_data["primary_image"]),
+            "path": os.path.join(base_path, file_data["primary_image"]),
             "upload": fieldset["primary_image"]
         })
 
     # SECONDARY
-    for key in sorted(img_data.keys()):
+    for key in sorted(file_data.keys()):
         if key.startswith("image") and key != "primary_image":
             try:
                 index = int(key.replace("image", ""))
             except ValueError:
                 continue
 
-            image_path = os.path.join(base_path, img_data[key])
+            image_path = os.path.join(base_path, file_data[key])
             upload_conf = fieldset.get("image")  # shared image selector
             if not upload_conf:
                 continue  # no upload input defined
@@ -338,9 +338,9 @@ def prepImages(artwork, fieldset):
             }
 
             caption_key = f"caption{index}"
-            if caption_key in img_data and "caption" in fieldset:
+            if caption_key in file_data and "caption" in fieldset:
                 entry["caption"] = {
-                    "value": img_data[caption_key],
+                    "value": file_data[caption_key],
                     **fieldset["caption"]  # shared caption field
                 }
 
@@ -349,7 +349,7 @@ def prepImages(artwork, fieldset):
     return results
 
 
-def picUp(driver, image_path, fieldName):
+def fileUpl(driver, image_path, fieldName):
     try:
         fieldName.send_keys(image_path)
         print(f"✅ Uploaded image: {image_path}")
@@ -361,15 +361,15 @@ def picUp(driver, image_path, fieldName):
         return False
 
 
-def uploadMainImage(driver, prep_img):
-    for img in prep_img:
-        if img.get("is_main"):
-            path = img["path"]
-            selector = img["upload"]["selector"]
+def uploadMainImage(driver, file_data):
+    for file in file_data:
+        if file.get("is_main"):
+            path = file["path"]
+            selector = file["upload"]["selector"]
 
             element = driver.find_element(By.CSS_SELECTOR, selector)
 
-            picUp(driver, path, selector)
+            fileUpl(driver, path, selector)
             break
 
 
@@ -403,15 +403,15 @@ def imageDesc(driver, caption, value):
         raise NotImplementedError(f"Unsupported input type: {input_type}")
 
 
-def uploadSecondaryImage(driver, prep_img):
-    path = prep_img["path"]
-    upload_selector = prep_img["upload"]["selector"]
+def uploadSecondaryImage(driver, prep_file):
+    path = prep_file["path"]
+    upload_selector = prep_file["upload"]["selector"]
 
     upload_elem = driver.find_element(By.CSS_SELECTOR, upload_selector)
-    picUp(driver, path, upload_elem)
+    fileUpl(driver, path, upload_elem)
 
-    if "caption" in prep_img:
-        caption = prep_img["caption"]
+    if "caption" in prep_file:
+        caption = prep_file["caption"]
         imageDesc(driver, caption, caption["value"])
 
 
@@ -426,17 +426,17 @@ FIELD_HANDLERS = {
 
 
 
-def upload_artwork():
+def upload_content():
     platform_name = input("Enter the platform name (e.g., Art-Majeur, Saatchi-Art): ").strip().lower()
     catalog = load_catalog(platform_name)
     fieldset = load_fieldset(platform_name)
     driver = setUp(platform_name, catalog)
-    artwork_id = get_artwork_by_id(catalog, artwork_id)
+    content_id = get_content_by_id(catalog, content_id)
 
     try:
-        artwork_id = int(input("Enter the ID of the artwork to upload: "))
-        upload_artwork(driver, artwork_id, catalog, fieldset)
-        print(f"✅ Successfully uploaded artwork ID {artwork_id}")
+        content_id = int(input("Enter the ID of the content to upload: "))
+        upload_content(driver, content_id, catalog, fieldset)
+        print(f"✅ Successfully uploaded content ID {content_id}")
     except ValueError:
         print("❌ Invalid input. Please enter a numeric ID.")
     except Exception as e:
@@ -449,7 +449,7 @@ def upload_artwork():
 
 
 def main(): 
-    upload_artwork()
+    upload_content()
 
 
 if __name__ == "__main__":
