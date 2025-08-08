@@ -9,7 +9,6 @@ swap.py
 art-majeur-catalog.json
 saatchi-art-catalog.json
 
-
 #artwork folders
 artwork*
 
@@ -17,4 +16,4 @@ artwork*
 
 #misc files
 misc_text*
-recycl-bin*
+recycle-bin*

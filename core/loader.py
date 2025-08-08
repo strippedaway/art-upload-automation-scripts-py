@@ -1,11 +1,13 @@
 import json
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
 
 def loadFFprofile(path="ff-profile.json"):
-    filepath = os.path.join(BASE_DIR, "data", path)
-    with open(os.path.join(filepath), "r", encoding="utf-8") as f:
+    filepath = os.path.join(DATA_DIR, path)
+    with open(filepath, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     ffprofile = data.get("ffprofile")
@@ -14,13 +16,14 @@ def loadFFprofile(path="ff-profile.json"):
 
     return ffprofile
 
+
 def loadSecrets(platform_name, path="secrets.json"):
-    base = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(base, path), "r", encoding="utf-8") as f:
+    filepath = os.path.join(DATA_DIR, path)
+    with open(filepath, "r", encoding="utf-8") as f:
         all_secrets = json.load(f)
 
     for entry in all_secrets:
-        if entry.get("platform", "Saatchi-Art").lower() == platform_name.lower():
+        if entry.get("platform", "").lower() == platform_name.lower():
             return entry
 
     raise ValueError(f"No credentials found for platform: {platform_name}")
@@ -28,16 +31,17 @@ def loadSecrets(platform_name, path="secrets.json"):
 
 def loadCatalog(platform_name):
     filename = f"{platform_name.lower()}-catalog.json"
-    path = os.path.join(BASE_DIR, "data", "catalog", filename)
-    with open(os.path.join(path, filename), "r", encoding="utf-8") as f:
+    filepath = os.path.join(DATA_DIR, "catalogs", filename)
+    with open(os.path.join(filepath), "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def loadFieldset(platform_name):
     filename = f"{platform_name.lower()}-fieldset.json"
-    path = os.path.join(BASE_DIR, "data", "fieldset", filename)
-    with open(os.path.join(path, filename), "r", encoding="utf-8") as f:
+    filepath = os.path.join(DATA_DIR, "fieldsets", filename)
+    with open(os.path.join(filepath), "r", encoding="utf-8") as f:
         return json.load(f)
+
 
 def loadAll(platform_name):
     return {

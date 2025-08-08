@@ -14,3 +14,5 @@ from .helpers import fetchContent, loadPlatformScript
 from .uploader import goToUploadForm
 
 from .setup import setUp, getContentID, getPlatform, preparePlatform
+
+from .manual import userPause, manTester, coreTestEnv

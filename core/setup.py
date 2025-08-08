@@ -6,7 +6,7 @@ from .helpers import *
 
 def setUp(platform_name, headless=False):
     PROFILE_PATH = loadFFprofile()
-    driver = getDriver(profile_path=PROFILE_PATH, headless=headless)
+    driver = getDriver(profile_path=PROFILE_PATH, headless=False)
     
     secrets = loadSecrets(platform_name)
     fieldset = loadFieldset(platform_name)

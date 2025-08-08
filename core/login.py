@@ -46,7 +46,7 @@ def logIn(driver, secrets, fieldset, timeout=15):
     login_button.click()
 
 
-    isLoggedIn(driver, fieldset, timeout=15)
+    isLoggedIn(driver, fieldset)
 
 
 
