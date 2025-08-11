@@ -65,7 +65,7 @@ def manTester(env: dict):
 
     print("🛑 Manual tester exited.\n")
 
-def coreTestEnv(driver, fieldset, content=None, secrets=None):
+def coreTestEnv(driver, fieldset, content, secrets=None):
     """
     Returns a dictionary of functions and objects for use in manTester().
     Can be extended with any runtime objects like `content`, `secrets`, etc.
@@ -73,6 +73,7 @@ def coreTestEnv(driver, fieldset, content=None, secrets=None):
     env = {
         "driver": driver,
         "fieldset": fieldset,
+        "content": content,
         "userPause": userPause,
 
         # Upload field functions

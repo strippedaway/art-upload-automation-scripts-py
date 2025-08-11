@@ -27,7 +27,7 @@ def getContentID():
     except ValueError:
         raise ValueError("Invalid ID")
     
-
+    
 def preparePlatform():
     platform_name = getPlatform()
     driver, fieldset = setUp(platform_name)

@@ -1,4 +1,3 @@
-
 from core import *
 
 
@@ -7,10 +6,20 @@ def main():
     while True:
         try:
             content_id = getContentID()
+            print("[main] getting contentID")
+
             content = fetchContent(catalog, content_id)
+            print("[main] fetched content")
+
             secrets = loadSecrets(platform_name)
+            print("[main] loaded secrets")
+
             runUpload = loadPlatformScript(platform_name)
+            print(f"[main] got runUpload={runUpload}")
+
             runUpload(driver, fieldset, content, secrets)
+            print("[main] returned from runUpload")
+
 
             print(f"✅ Successfully uploaded content ID {content_id}")
         except ValueError:
@@ -26,3 +35,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

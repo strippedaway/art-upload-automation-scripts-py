@@ -1,4 +1,4 @@
-from ..core import *
+from core import *
 
 def runUpload(driver, fieldset, content, secrets):
     

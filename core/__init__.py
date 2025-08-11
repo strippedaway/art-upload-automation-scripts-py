@@ -9,7 +9,7 @@ from .autocomplete import textFill, dropChoose, clickRadio, clickMulti, clickBut
 
 from .fileupload import prepFiles, fileUpl, uploadMainFile, uploadSecondaryFile
 
-from .helpers import fetchContent, loadPlatformScript
+from .helpers import fetchContent, loadPlatformScript, PlatformScriptLoadError
 
 from .uploader import goToUploadForm
 

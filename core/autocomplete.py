@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 def prepElem(driver, fieldset, content, fieldName, timeout=10):
-    field_conf = fieldset.get(fieldName)
+    field_conf = fieldset["fieldset"].get(fieldName)
     if not field_conf:
                 raise ValueError(f"[prepElem] No field mapping found for '{fieldName}'")
 
