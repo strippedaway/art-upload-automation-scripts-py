@@ -17,3 +17,10 @@ artwork*
 #misc files
 misc_text*
 recycle-bin*
+
+
+__pycache__/
+
+.vscode/
+
+data/files/*

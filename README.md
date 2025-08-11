@@ -52,7 +52,7 @@ For now you have to grab those elements manually. However, in the future the pla
 `ff-profile.json` is filled out by adding a firefox profile directory to it. This imports your sessions and so on. This should be revised. but as this function runs locally for now it is fine. In the future 
 
 ```json
-```{
+{
 
 "ffprofile": "/home/user/.mozilla/firefox/<profile-folder-directory>"
 
